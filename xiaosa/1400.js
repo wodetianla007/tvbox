@@ -1,9 +1,10 @@
 function init(ext) {
     let now = new Date();
-    let expireTime = new Date('2025-11-27T14:15:00+08:00');
+    let expireTime = new Date('2025-11-27T14:00:00+08:00');
 
     if (now >= expireTime) {
-        return JSON.stringify({
+        // ✅ 直接返回对象，不要 stringify！
+        return {
             sites: [],
             lives: [],
             parses: [],
@@ -11,30 +12,28 @@ function init(ext) {
             flags: [],
             wallpaper: "",
             disabled_wallpaper: ""
-        });
-    }
-
-    let url = 'https://gh-proxy.org/https://raw.githubusercontent.com/wodetianla007/tvbox/master/xiaosa/2025120.json';
-
-    try {
-        let res = request(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
-        if (res.code === 200 && res.content && res.content.trim().length > 0) {
-            return res.content; // 已经是 JSON 字符串
+        };
+    } else {
+        let url = 'https://gh-proxy.org/https://raw.githubusercontent.com/wodetianla007/tvbox/master/xiaosa/2025120.json';
+        try {
+            let res = request(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+            if (res.code === 200 && res.content) {
+                // ✅ 把 JSON 字符串解析成对象再返回
+                return JSON.parse(res.content);
+            }
+        } catch (e) {
+            console.log("请求或解析失败:", e);
         }
-    } catch (e) {
-        console.log("请求失败:", e);
+
+        // 失败时也返回对象
+        return {
+            sites: [],
+            lives: [],
+            parses: [],
+            rules: [],
+            flags: [],
+            wallpaper: "",
+            disabled_wallpaper: ""
+        };
     }
-
-    // 如果所有都失败，返回空配置
-    return JSON.stringify({
-        sites: [],
-        lives: [],
-        parses: [],
-        rules: [],
-        flags: [],
-        wallpaper: "",
-        disabled_wallpaper: ""
-    });
 }
-
-
