@@ -1,6 +1,6 @@
 function init(ext) {
     let now = new Date();
-    let expireTime = new Date('2025-11-27T14:30:00+08:00');
+    let expireTime = new Date('2025-11-27T14:40:00+08:00');
 
     if (now >= expireTime) {
         return {
@@ -14,7 +14,7 @@ function init(ext) {
         };
     }
 
-    let url = 'https://gh-proxy.org/https://raw.githubusercontent.com/wodetianla007/tvbox/refs/heads/master/xiaosa/2025120.json';
+    let url = 'https://cdn.jsdelivr.net/gh/wodetianla007/tvbox@master/xiaosa/2025120.json';
 
     try {
         let res = request(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
@@ -39,3 +39,4 @@ function init(ext) {
         };
     }
 }
+
