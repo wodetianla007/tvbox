@@ -1,6 +1,6 @@
 function init(ext) {
     let now = new Date();
-    let expireTime = new Date('2025-11-27T14:06:00+08:00');
+    let expireTime = new Date('2025-11-27T14:15:00+08:00');
 
     if (now >= expireTime) {
         return JSON.stringify({
@@ -36,4 +36,5 @@ function init(ext) {
         disabled_wallpaper: ""
     });
 }
+
 
