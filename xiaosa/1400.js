@@ -15,8 +15,9 @@ function init(ext) {
         });
     } else {
         // ✅ 使用完整的 GitHub Raw URL（替换为你的实际用户名和仓库名）
-        let url = 'https://gh-proxy.org/https://raw.githubusercontent.com/wodetianla007/tvbox/refs/heads/master/xiaosa/20251201.json';
+        let url = 'https://gh-proxy.org/https://raw.githubusercontent.com/wodetianla007/tvbox/refs/heads/master/xiaosa/2025120.json';
         let res = request(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
         return res.content;
     }
+
 }
